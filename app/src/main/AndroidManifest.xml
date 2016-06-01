@@ -15,7 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyListActivity" />
+        <activity android:name=".ListViewBaseAdapterActivity"></activity>
     </application>
 
 </manifest>

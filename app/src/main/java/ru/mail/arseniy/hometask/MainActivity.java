@@ -9,6 +9,9 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,13 +23,13 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                SystemClock.sleep(2000);
-                Intent intent = new Intent(MainActivity.this, MyListActivity.class);
+                SystemClock.sleep(0);
+                Intent intent = new Intent(MainActivity.this, ListViewBaseAdapterActivity.class);
                 MainActivity.this.startActivity(intent);
                 MainActivity.this.finish();
             }
 
-        }, 2500);
+        }, 2000);
 
 
     }
