@@ -53,7 +53,14 @@
     </string-array>
 
     <string-array name="thousand">
-        
+        <item>тысяча</item>
+        <item>тысячи</item>
+        <item>тысяч</item>
+    </string-array>
+
+    <string-array name="thousand_unit">
+        <item>одна</item>
+        <item>две</item>
     </string-array>
 
 </resources>
