@@ -9,10 +9,12 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private boolean backPressed;
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        backPressed = true;
     }
 
     @Override
@@ -27,9 +29,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 SystemClock.sleep(0);
-                Intent intent = new Intent(MainActivity.this, ListViewBaseAdapterActivity.class);
-                MainActivity.this.startActivity(intent);
-                MainActivity.this.finish();
+                if (!backPressed) {
+                    Intent intent = new Intent(MainActivity.this, ListViewBaseAdapterActivity.class);
+                    MainActivity.this.startActivity(intent);
+                    MainActivity.this.finish();
+                }
             }
 
         }, 2000);
