@@ -108,10 +108,9 @@ class MyAdapter extends BaseAdapter {
         public TextView textView;
     }
 
-    MyAdapter(Context context, String[] list) {
+    MyAdapter(Context context, ArrayList list) {
         this.context = context;
-        names = new ArrayList<>();
-        Collections.addAll(names, list);
+        names = list;
         res = context.getResources();
         hundreds = res.getStringArray(R.array.hundred);
         decades = res.getStringArray(R.array.decade);
@@ -139,7 +138,7 @@ class MyAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        String str = getNumber((String) getItem(position));
+        String str = getNumber((String)names.get(position));
         ViewHolder holder;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
