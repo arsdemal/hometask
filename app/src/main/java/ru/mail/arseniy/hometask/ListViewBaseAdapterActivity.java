@@ -19,14 +19,17 @@ import java.util.Objects;
 
 public class ListViewBaseAdapterActivity extends Activity {
 
+    private Resources res;
+    private String[] hundreds;
+    private String[] decades;
+    private String[] units;
+    private String[] thousand;
+    private String[] thousandUnit;
+
     public String getHundred(String number, Boolean flag) {
 
-        Resources res = getResources();
-        String[] hundreds = res.getStringArray(R.array.hundred);
-        String[] decades = res.getStringArray(R.array.decade);
-        String[] units = res.getStringArray(R.array.unit);
         if (flag==Boolean.TRUE) {
-            System.arraycopy(res.getStringArray(R.array.thousand_unit),0,units,1,2);
+            System.arraycopy(thousandUnit,0,units,1,2);
         }
         String[] teen = res.getStringArray(R.array.teen);
         String result = "";
@@ -68,7 +71,6 @@ public class ListViewBaseAdapterActivity extends Activity {
     public String getThousand(String number) {
         String result = "";
         Integer len = number.length();
-        String[] thousand = getResources().getStringArray(R.array.thousand);
 
         result += getHundred(number,Boolean.TRUE);
         if (len > 1) {
@@ -109,66 +111,19 @@ public class ListViewBaseAdapterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listview_layout);
         ListView lv = (ListView) findViewById(R.id.listview);
+        res = getResources();
+        hundreds = res.getStringArray(R.array.hundred);
+        decades = res.getStringArray(R.array.decade);
+        units = res.getStringArray(R.array.unit);
+        thousand = getResources().getStringArray(R.array.thousand);
+        thousandUnit = res.getStringArray(R.array.thousand_unit);
 
         ArrayList<String> numbers = new ArrayList<>();
-        for (Integer i = 1; i<=100999; i++) {
+        for (Integer i = 1; i<=100000; i++) {
             numbers.add(getNumber(i.toString()));
         }
-        //String[] numbers = getResources().getStringArray(R.array.numbers);
         lv.setAdapter(new MyAdapter(this, numbers.toArray(new String[0])));
-
     }
 
-    static class MyAdapter extends BaseAdapter {
 
-        Context context;
-        ArrayList names;
-
-        public static class ViewHolder {
-            public TextView textView;
-        }
-
-        MyAdapter(Context context, String[] list) {
-            this.context = context;
-            names = new ArrayList<>();
-            Collections.addAll(names, list);
-
-        }
-
-        @Override
-        public int getCount() {
-            return names.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return names.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            String str = (String) getItem(position);
-            ViewHolder holder;
-            if (convertView == null) {
-                convertView = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
-                holder = new ViewHolder();
-                holder.textView = (TextView)convertView.findViewById(R.id.element_text);
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder)convertView.getTag();
-            }
-            holder.textView.setText(str);
-            if ((position & 1) == 1) {
-                convertView.setBackgroundColor(Color.rgb(170, 170, 170));
-            } else {
-                convertView.setBackgroundColor(Color.rgb(255, 255, 255));
-            }
-            return convertView;
-        }
-    }
 }
