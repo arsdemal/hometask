@@ -29,7 +29,7 @@ public class ListViewBaseAdapterActivity extends Activity {
 
 
         ArrayList<String> numbers = new ArrayList<>();
-        for (Integer i = 1; i<1000000; i++) {
+        for (Integer i = 1; i<=1000000; i++) {
             numbers.add(i.toString());
         }
         lv.setAdapter(new MyAdapter(this, numbers));

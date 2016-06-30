@@ -93,8 +93,9 @@ class MyAdapter extends BaseAdapter {
 
         Integer len = number.length();
         String result = "";
-
-        if (len > 3) {
+        if (len == 7) {
+            result = res.getString(R.string.million);
+        } else if (len > 3) {
             result += getThousand(number.substring(0, len - 3));
             result += getHundred(number.substring(len-3,len),Boolean.FALSE);
         } else {

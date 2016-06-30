@@ -63,4 +63,6 @@
         <item>две</item>
     </string-array>
 
+    <string name="million"> миллион</string>
+
 </resources>
